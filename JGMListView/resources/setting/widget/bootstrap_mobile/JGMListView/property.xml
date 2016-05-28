@@ -1,0 +1,33 @@
+<definition>
+	<propertys>
+		<property name="IsAtomicType" defaultValue="true" type="string" required="false" canEmpty="true" desc="是否原子"/>
+		<property name="RequireJS" defaultValue="JGMListView/JGMList.js" type="string" required="false" canEmpty="true" desc="扩展js"/>
+		
+		<property name="Code" type="code" required="true" canEmpty="false" desc="控件名称"/>
+		<property name="Dock" type="string" required="true" canEmpty="true" desc="泊靠"/>
+		<property name="Height" type="number" required="true" canEmpty="false" desc="高度"/>
+		<property name="Width" type="number" required="true" canEmpty="false" desc="宽度"/>
+		<property name="IsGroups" type="boolean" required="true" canEmpty="true" desc="显示分组"/>
+		<property name="IsMultiSelect" type="boolean" required="true" canEmpty="true" desc="是否多选"/>
+		<property name="PercentHeight" type="number" required="true" canEmpty="false" desc="百分比高度"/>
+		<property name="PercentWidth" type="number" required="true" canEmpty="false" desc="百分比宽度" />
+		<property name="Top" type="number" required="true" canEmpty="false" desc="上边距"/>
+		
+		<property name="TableName" type="tableName" required="true" canEmpty="true" desc="表名"/>
+		
+	</propertys>
+	<events>
+		<event name="OnClick"  desc="单击事件"/>
+		<event name="OnDataChanged"  desc="记录切换事件"/>
+		<event name="OnValueLoaded" desc="值加载事件"/>
+	</events>
+	<dataBindings>
+		<dataBinding name="datasource" required="false">
+			<storeType>singleRecord</storeType>
+			<dataSource name="TableName" canEmpty="true" desc="表名"/>
+			<dataMembers>
+				<dataMember name="ColumnName" type="String" canEmpty="true"  isRelation="false" desc="字段名称"/>
+			</dataMembers>
+		</dataBinding>
+	</dataBindings>
+</definition>

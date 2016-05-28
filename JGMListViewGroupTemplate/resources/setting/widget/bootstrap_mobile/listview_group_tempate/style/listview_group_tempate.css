@@ -1,0 +1,28 @@
+.li_group{
+	height: 26px;
+	margin-top: -1px;
+	padding-left: 15px;
+	border-top: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+	background-color: #f6f6f6;
+	
+	color:#8f8f8f;
+	font-size: 14px;
+	line-height: 26px;
+	vertical-align:middle;
+}
+.li_group_large{
+	height: 46px;
+	margin-top: -1px;
+	padding-top: 20px;
+	padding-left: 15px;
+	border-top: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+	background-color: #f6f6f6;
+	
+	color:#8f8f8f;
+	font-size: 14px;
+	line-height: 26px;
+	vertical-align:top;
+}
+
