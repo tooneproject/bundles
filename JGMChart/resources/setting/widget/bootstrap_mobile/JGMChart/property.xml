@@ -1,0 +1,34 @@
+<definition>
+	<propertys>
+		<property name="IsAtomicType" defaultValue="true" type="string" required="false" canEmpty="true" desc="是否原子"/>
+        <property name="StoreType" defaultValue="set" type="string" required="false" canEmpty="true" desc="数据类型"/>
+        <property name="RequireJS" defaultValue="JGMChart/libs/fusioncharts-suite-xt-3.9.0/fusioncharts.js,JGMChart/V3_Chart.js" type="string" required="false" canEmpty="true" desc="扩展js"/>
+
+		<property name="Code" type="code" required="true" canEmpty="false" desc="控件名称"/>
+		<property name="Dock" type="string" required="true" canEmpty="true" desc="泊靠"/>
+		<property name="Height" type="number" required="true" canEmpty="false" desc="高度"/>
+		<property name="PercentHeight" type="number" required="true" canEmpty="false" desc="百分比高度"/>
+		<property name="PercentWidth" type="number" required="true" canEmpty="false" desc="百分比宽度"/>
+		<property name="DisplayScale" type="string"  required="true" canEmpty="false" desc="宽度比例"/>
+		<property name="TabIndex" type="number"  required="true" canEmpty="false" desc="界面顺序号"/>
+		<property name="Visible" type="boolean"  required="false" canEmpty="true" desc="显示"/>
+		<property name="TagData" type="string" required="true" canEmpty="true" desc="Tag"/>
+		<property name="ToolTip" type="string" required="true" canEmpty="true" desc="浮动提示"/>
+		<property name="GraphSettings" type="string" required="true" canEmpty="true" desc=""/>  
+
+		<property name="TableName" type="tableName" required="true" canEmpty="true" desc="表名"/>
+		<property name="ColumnName" type="columnName"  required="true" canEmpty="true" desc="字段名"/>
+	</propertys>
+	<events>
+		<event name="OnChartClick" desc="图形点击"/>
+	</events>
+	<dataBindings>
+		<dataBinding name="datasource" required="false">
+			<storeType>singleRecord</storeType>
+			<dataSource name="TableName" canEmpty="true" desc="表名"/>
+			<dataMembers>
+				<dataMember name="ColumnName" type="String" canEmpty="true"  isRelation="false" desc="字段名称"/>
+			</dataMembers>
+		</dataBinding>
+	</dataBindings>
+</definition>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>竖柱图2D</title>
+    <link href="../../../../../common/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script type="text/javascript" src='../examplePath.js'></script>
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <button onclick="loadData()">Load Data</button>
+    </div>
+    <div class="row-fluid">
+        <div id="main" style="height:400px;"/>
+    </div>
+</div>
+</body>
+</html>
+<script language="JavaScript">
+	var v3chart;
+    function startDraw(){
+    	v3chart = new V3Chart("main", config);
+    }
+
+    function loadData(){
+        v3chart.createChart("main", config, data[config.ds]);
+    }
+
+</script>
