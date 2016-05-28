@@ -1,0 +1,60 @@
+<definition>
+	<propertys>
+		<!-- 静态属性 -->
+		<property name="IsAtomicType" defaultValue="true" type="string" required="false" canEmpty="true" desc="是否原子"/>
+		<property name="RequireJS" defaultValue="JGMRaty/js/RatingBar.js" type="string" required="false" canEmpty="true" desc="扩展js"/>
+		<!-- 静态属性 -->
+		<!-- UI属性 -->
+		<property name="Code" type="code" required="true" canEmpty="false" desc="控件名称"/>
+		<property name="Height" type="number" required="true" canEmpty="false" desc="高度"/>
+		<property name="Width" type="number" required="true" canEmpty="false" desc="宽度"/>
+		<property name="LabelText" type="string" required="true" canEmpty="true" desc="标题"/>
+		<property name="LabelTextVisible" type="boolean" required="true" canEmpty="true" desc="是否显示标题"/>
+		<property name="LabelPercentWidth" type="number" required="true" canEmpty="false" desc="标题宽度(%)"/>
+		<property name="ReadOnly" type="boolean" required="true" canEmpty="false" desc="只读"/>
+		<property name="Visible" type="boolean" required="true" canEmpty="true" desc="显示"/>
+		<property name="Spacing" type="padding" required="true" canEmpty="false" desc="布局间距"/>
+		<property name="DisplayScale" type="string" required="true" canEmpty="false" desc="宽度比例"/>
+		
+		<property name="StarVal" type="number" required="true" canEmpty="false" desc="每颗星分数"/>
+		<property name="StarMax" type="number" required="true" canEmpty="false" desc="星数量"/>
+		<property name="StarIcon" type="string" required="true" canEmpty="false" desc="星星图标"/>
+		<property name="HighlightStarIcon" type="string" required="true" canEmpty="true" desc="高亮星星图标"/>
+        <property name="StarAlign" type="string" required="true" canEmpty="true" desc="星星对齐方式"/>
+		
+		<!-- UI属性 -->
+		<!-- 事件 -->
+		<!-- 
+		<property name="OnValueChanged" type="event" required="true" canEmpty="true" desc="值改变事件"/>
+		<property name="OnKeyDown" type="event" required="true" canEmpty="true" desc="键盘按下"/>
+		<property name="OnValueLoaded" type="event" required="true" canEmpty="true" desc="键盘按下"/>
+		<property name="OnLabelClick" type="event" required="true" canEmpty="true" desc="单击标题"/>
+		<property name="OnEnter" type="event" required="true" canEmpty="true" desc="获取焦点"/>
+		<property name="OnLeave" type="event" required="true" canEmpty="true" desc="失去焦点"/>
+		 -->
+		<!-- 事件 -->
+		<!-- 数据 -->
+		<property name="TableName" type="tableName" required="true" canEmpty="true" desc="表名"/>
+		<property name="ColumnName" type="columnName" required="true" canEmpty="true" desc="字段名称"/>
+		<!-- 数据 -->
+	</propertys>
+	<events>
+	<!-- 
+		<event name="OnValueChanged"  desc="值改变事件"/>
+		<event name="OnKeyDown"  desc="键盘按下"/>
+		<event name="OnValueLoaded" desc="值加载事件"/>
+		<event name="OnLabelClick" desc="单击标题"/>
+		<event name="OnEnter" desc="获取焦点"/>
+		<event name="OnLeave" desc="失去焦点"/>
+	 -->
+	</events>
+	<dataBindings>
+		<dataBinding name="datasource" required="false">
+			<storeType>singleRecord</storeType>
+			<dataSource name="TableName" canEmpty="true" desc="表名"/>
+			<dataMembers>
+				<dataMember name="ColumnName" type="String" canEmpty="true" isRelation="false" desc="字段名称"/>
+			</dataMembers>
+		</dataBinding>
+	</dataBindings>
+</definition>

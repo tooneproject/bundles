@@ -1,0 +1,59 @@
+.star_container {
+    background-color: #fff;
+    padding: 0px 15px;
+}
+
+.hand_cursor {
+    cursor: pointer;
+}
+.jgmstar_label{
+    height: 42px;
+    line-height: 42px;
+    float: left;
+    
+    color：#333 !important;
+    font-size：14px !important;
+}
+.jgmstar_stars{
+    height: 42px;
+    float: left;
+}
+.jgmstar_bar{
+    height: 42px;
+}
+.jgmstar_bar.left{
+    margin-right: auto;
+}
+.jgmstar_bar.center{
+    margin-left: auto;
+    margin-right: auto;
+}
+.jgmstar_bar.right{
+    margin-left: auto;
+}
+.jgmstar_wrap {
+    float: left;
+    margin-right: 8px;
+
+    width: 22px;
+}
+.jgmstar_wrap:last-child {
+    margin-right: 0px;
+}
+.jgmstar {
+    font-size: 22px;
+    width: 22px;
+    height: 42px;
+    line-height: 42px;
+
+    display: inline-block;
+    color: #c7c7cc;
+}
+.jgmstar.on {
+    color: #ff9500;
+}
+.jgmstar.half {
+    color: #ff9500;
+    position: absolute;
+    overflow: hidden;
+}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <script language="JavaScript" src="../../../common/jquery/jquery-1.10.2.js"></script>
+    <script language="JavaScript" src="js/RatingBar.js"></script>
+    <link href="../../../common/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../../../common/iconfont/iconfont.css" rel="stylesheet">
+    <link href="css/JGMRaty.css" rel="stylesheet" >
+</head>
+
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-4 ">MESSAGE:</div>
+        <div class="col-xs-8 " id="msg"></div>
+    </div>
+</div>
+<div class="container" id="example1">
+    不显示标题, 星居左<br/>
+    <div class="row star_container">
+    	<div class="col-xs-12">
+        <div id="example1_label" class="jgmstar_label"></div>
+        <div id="example1_stars" class="jgmstar_stars"><div id="example1_bar" class="jgmstar_bar"></div></div>
+        </div>
+    </div>
+</div>
+<div class="container" id="example2">
+    不显示标题, 星居中<br/>
+    <div class="row star_container" >
+    <div class="col-xs-12">
+        <div id="example2_label" class="jgmstar_label"></div>
+        <div id="example2_stars" class="jgmstar_stars"><div id="example2_bar" class="jgmstar_bar"></div></div>
+    </div></div>
+</div>
+<div class="container" id="example3">
+    不显示标题, 星居右<br/>
+    <div class="row star_container" >
+    <div class="col-xs-12">
+        <div id="example3_label" class="jgmstar_label"></div>
+        <div id="example3_stars" class="jgmstar_stars"><div id="example3_bar" class="jgmstar_bar"></div></div>
+    </div></div>
+</div>
+<div class="container" id="example4">
+    标题居左, 星居左<br/>
+    <div class="row star_container" >
+    <div class="col-xs-12">
+        <div id="example4_label" class="jgmstar_label"></div>
+        <div id="example4_stars" class="jgmstar_stars"><div id="example4_bar" class="jgmstar_bar"></div></div>
+    </div></div>
+</div>
+<div class="container" id="example5">
+    标题居中, 星居中<br/>
+    <div class="row star_container" >
+    <div class="col-xs-12">
+        <div id="example5_label" class="jgmstar_label"></div>
+        <div id="example5_stars" class="jgmstar_stars"><div id="example5_bar" class="jgmstar_bar"></div></div>
+    </div></div>
+</div>
+<div class="container" id="example6">
+    标题居右, 星居右<br/>
+    <div class="row star_container" >
+    <div class="col-xs-12">
+        <div id="example6_label" class="jgmstar_label"></div>
+        <div id="example6_stars" class="jgmstar_stars"><div id="example6_bar" class="jgmstar_bar"></div></div>
+    </div></div>
+</div>
+
+<br/>
+<div class="container" id="s0">
+    <div class="row star_container">
+    <div class="col-xs-12">
+        <div id="s0_label" class="jgmstar_label"></div>
+        <div id="s0_stars" class="jgmstar_stars"><div id="s0_bar" class="jgmstar_bar"></div></div>
+    </div></div>
+</div>
+<div class="container" id="s1">
+    <div class="row star_container">
+    <div class="col-xs-12">
+        <div id="s1_label" class="jgmstar_label"></div>
+        <div id="s1_stars" class="jgmstar_stars"><div id="s1_bar" class="jgmstar_bar"></div></div>
+    </div></div>
+</div>
+<div class="container" id="s2">
+    <div class="row star_container">
+    <div class="col-xs-6">
+        <div id="s2_label" class="jgmstar_label"></div>
+        <div id="s2_stars" class="jgmstar_stars"><div id="s2_bar" class="jgmstar_bar"></div></div>
+    </div></div>
+</div>
+<div class="container" id="s3">
+    <div class="row star_container">
+    <div class="col-xs-12">
+        <div id="s3_label" class="jgmstar_label"></div>
+        <div id="s3_stars" class="jgmstar_stars"><div id="s3_bar" class="jgmstar_bar"></div></div>
+    </div></div>
+</div>
+</body>
+<script language="JavaScript">
+    var GraphSettings0 = {
+        "ReadOnly": "false",
+        "Top": "9",
+        "LabelText": "服务态度: ",
+        "LabelPercentWidth": "30",
+        "PercentHeight": "4.2%",
+        "Visible": "true",
+        "PercentWidth": "59.3%",
+        "LabelPercentWidth":"30",
+        "DisplayScale": "",
+        "Height": "25",
+        "StarVal": "20",
+        "code": "JGMRaty1",
+        "type": "JGMRaty",
+        "Spacing": "0,0,0,0",
+        "Code": "JGMRaty1",
+        "Left": "0",
+        "LabelTextVisible": "true",
+        "LabelTextAlign":"right",
+        "StarAlign":"right",
+        "TableName": "Driver",
+        "Width": "500",
+        "ColumnName": "rating",
+        "StarMax": "5",
+        "StarIcon": "iconfont icon-favorfill"
+    };
+    var data = 70;
+    var l = function (oldVal, newVal) {
+        //alert("new value is "+newVal);
+        $("#msg").text(newVal);
+    };
+
+    initStars("example1","false","","left");
+    initStars("example2","false","","center");
+    initStars("example3","false","","right");
+    initStars("example4","true","left","left");
+    initStars("example5","true","center","center");
+    initStars("example6","true","right","right");
+
+    function initStars(starId, lbVisible, lbAlign, starAlign){
+        GraphSettings0.LabelTextVisible = lbVisible;
+        GraphSettings0.LabelTextAlign = lbAlign;
+        GraphSettings0.StarAlign = starAlign;
+        var bar = new RatingBar(starId);
+        bar.initConfig(GraphSettings0);
+        bar.setValue(data);
+        bar.addValueChangedListeners(l);
+        bar.refresh();
+    }
+
+    initStars("s0","true","left","left");
+
+    GraphSettings0.LabelText = "物流速度";
+    GraphSettings0.LabelPercentWidth = 50;
+    GraphSettings0.HighlightStarIcon = "iconfont icon-likefill";
+    initStars("s1","true","left","left");
+    GraphSettings0.LabelPercentWidth = 30;
+
+    GraphSettings0.ReadOnly = "true";
+    initStars("s2","true","left","left");
+    GraphSettings0.ReadOnly = "false";
+
+    GraphSettings0.StarMax = 9;
+    GraphSettings0.StarVal = 1;
+    data = 7.8;
+    initStars("s3","true","left","left");
+
+    $(".jgmstar_label").css("background-color","#eeffee");
+    $(".jgmstar_stars").css("background-color","#ffeeee");
+    $(".jgmstar_bar").css("background-color","#efefef");
+</script>
+</html>
