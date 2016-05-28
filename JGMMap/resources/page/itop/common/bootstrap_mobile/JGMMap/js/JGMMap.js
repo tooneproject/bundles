@@ -145,6 +145,7 @@
                 	me.closeAllInfoOverlays();
                     myInfo.show();
                     me.fireOnMarkerClickListeners(e);
+					e.domEvent.stopPropagation();
                 });
             }
         };
@@ -263,9 +264,13 @@
             }
         };
         me.fireOnClickListeners = function (e) {
-            if(!opts.readOnly) return;
-            for (var i = 0, l = me.clickEventListeners.length; i < l; i++) {
-                me.clickEventListeners[i](targetLocation);
+        	//fire click events only when readonly is true
+            if(opts.readOnly) {
+            	for (var i = 0, l = me.clickEventListeners.length; i < l; i++) {
+                    me.clickEventListeners[i](targetLocation);
+                }
+            }else{
+            	me.closeAllInfoOverlays();
             }
         };
         me.fireOnDragListeners = function (e) {
