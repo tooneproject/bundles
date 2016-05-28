@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="yes" name="apple-touch-fullscreen">
+	<meta content="telephone=no,email=no" name="format-detection">
+	<meta content="fullscreen=yes,preventMove=no" name="ML-Config">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script language="JavaScript" src="../../../common/jquery/jquery-1.10.2.js"></script>
+    
+    <link href="../../../common/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../../../common/iconfont/iconfont.css" rel="stylesheet">
+    <link href="css/JGMMap.css" rel="stylesheet">
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=sWn0piCMGsFE2peqc3RXkqZCw4cQ9Gph"></script>
+	<script type="text/javascript" src="js/JGMMap.js"></script>
+    <title>地图官网展示效果</title>
+</head>
+<body>
+<div style="width: 100%; position:absolute; top:0; left:0; z-index:99999;">
+    <input id="search" type="button" value="search" >
+    <input id="showRoute" type="button" value="showRoute" >
+    <input id="getStart" type="button" value="getStart" >
+    <input id="getEnd" type="button" value="getEnd" >
+    <input id="getTarget" type="button" value="getTarget" >
+    <input id="getCurrent" type="button" value="getCurrent" >
+    <div id="msg"></div>
+</div>
+<div id="demo_map_form1_JGMMap1_402881e354ad0d2a0154b21970230658_demo_map_parent" class="jgmmap">
+<div id="demo_map_form1_JGMMap1_402881e354ad0d2a0154b21970230658_demo_map" class="jgmmap"></div>
+<div id="demo_map_form1_JGMMap1_402881e354ad0d2a0154b21970230658_demo_map_input" class="jgmmap-input" style="display: none;">
+    <div class="jgmmap-input-action iconfont icon-close" style="font-size:10px"></div>
+    <div class="jgmmap-input-bar" >起点：
+        <input class="jgmmap-input-text" type="text" value="" placeholder="" id="demo_map_form1_JGMMap1_402881e354ad0d2a0154b21970230658_demo_map_input_text">
+        <input class="jgmmap-input-btn" type="button" value="公交" data-rttype="transit">
+        <input class="jgmmap-input-btn" type="button" value="驾车" data-rttype="driving">
+        <input class="jgmmap-input-btn" type="button" value="步行" data-rttype="walking">
+    </div>
+</div>
+<div id="demo_map_form1_JGMMap1_402881e354ad0d2a0154b21970230658_demo_map_address" class="jgmmap-address" style="display: none;"></div>
+</div>
+<script type="text/javascript">
+var jgmmap = JGMMap();
+
+var properties = {
+    AddressColumn: "target_address",//在setTargetLocation时需要用到
+    LatitudeColumn: "target_latitude",//同上
+    LongitudeColumn: "target_longitude",//同上
+    Code: "JGMMap1",
+    GlobalCode: "demo_map_form1_JGMMap1_402881e354ad0d2a0154b21970230658_demo_map",
+    OnClick: "HASRULEINSTANCE",
+    OnDnd: "",
+    OnMarkerClick: "HASRULEINSTANCE",
+    Visible: "true",
+    ReadOnly: "false",
+    GPSVisible: "true",
+    ZoomVisible: "true",
+    code: "JGMMap1",
+    endLocation: "同望",
+    startLocation: "拱北口岸",
+    widgetType: "JGMMap"
+};
+jgmmap.init(properties);
+
+var data = {
+    "loctarget.target_longitude":"113.5615",
+    "loctarget.target_latitude":"22.3948",
+    "loctarget.target_address":"同望"
+};
+//指定一个目标位置(对应需求点#2)
+//jgmmap.setTargetLocation(data);
+
+jgmmap.addMarkers([data]);
+
+//需求#4,#15
+jgmmap.addOnClickListener(function(e){
+    console.log("只读时点击地图事件");
+});
+//添加标记的时候添加事件
+jgmmap.addOnMarkerClickListener(function(e){
+    console.log("点击标注点");
+});
+jgmmap.addOnDragListener(function(e){
+    console.log("Drag 事件");
+});
+//需求#8
+
+//setTimeout(function(){jgmmap.keywordSearch("酒店");}, 5000);
+//需求#10
+//jgmmap.showRoute("拱北口岸","同望");
+console.log("getStartAddress " + JSON.stringify(jgmmap.getStartAddress()));
+console.log("getEndAddress " + JSON.stringify(jgmmap.getEndAddress()));
+//需求#11
+console.log("getTargetLocation " + JSON.stringify(jgmmap.getTargetLocation()));
+//需求#12
+console.log("getCurrLocation " + JSON.stringify(jgmmap.getCurrLocation()));
+//操作性需求:#3,#6,#7
+$("#search").click(function(){
+    jgmmap.keywordSearch("酒店");
+});
+$("#showRoute").click(function(){
+    jgmmap.showRoute("拱北口岸","同望");
+});
+$("#getStart").click(function(){
+    $("#msg").text(JSON.stringify(jgmmap.getStartAddress()));
+});
+$("#getEnd").click(function(){
+    $("#msg").text(JSON.stringify(jgmmap.getEndAddress()));
+});
+$("#getTarget").click(function(){
+    $("#msg").text(JSON.stringify(jgmmap.getTargetLocation()));
+});
+$("#getCurrent").click(function(){
+    $("#msg").text(JSON.stringify(jgmmap.getCurrLocation()));
+});
+</script>
+</body>
+</html>

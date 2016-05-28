@@ -1,0 +1,46 @@
+<definition>
+	<propertys>
+		<!-- 静态属性 -->
+		<property name="IsAtomicType" defaultValue="true" type="string" required="false" canEmpty="true" desc="是否原子"/>
+		<property name="RequireJS" defaultValue="JGMMap/js/JGMMap.js" type="string" required="false" canEmpty="true" desc="扩展js"/>
+		
+		<property name="Code" type="code" required="true" canEmpty="false" desc="控件名称"/>
+		<property name="Left" type="number" required="true" canEmpty="true" desc="左边距"/>
+		<property name="Top" type="number" required="true" canEmpty="true" desc="上边距"/>
+		<property name="HeightPercent" type="number" required="true" canEmpty="true" desc="百分比高度"/>
+		<property name="DisplayScale" type="string" required="true" canEmpty="true" desc="显示比例"/>
+		<property name="Visible" type="boolean" required="true" canEmpty="true" desc="显示"/>
+		<property name="ReadOnly" type="boolean" required="true" canEmpty="true" desc="只读"/>
+		<property name="InfoVisible" type="boolean" required="true" canEmpty="true" desc="默认显示标注信息"/>
+		<property name="ZoomVisible" type="boolean" required="true" canEmpty="true" desc="显示放大缩小按钮"/>
+		<property name="GPSVisible" type="boolean" required="true" canEmpty="true" desc="显示GPS按钮"/>
+		<property name="StartAddress" type="string" required="true" canEmpty="true" desc="起点地址"/>
+		<property name="EndAddress" type="string" required="true" canEmpty="true" desc="终点地址"/>
+		<property name="Keyword" type="string" required="true" canEmpty="true" desc="关键字"/>
+		<property name="TargetLng" type="number" required="true" canEmpty="true" desc="目标位置经度"/>
+		<property name="TargetLat" type="number" required="true" canEmpty="true" desc="目标位置纬度"/>
+		<property name="TargetAddress" type="string" required="true" canEmpty="true" desc="目标位置地址"/>
+		<property name="CurrentLng" type="number" required="true" canEmpty="true" desc="当前位置经度"/>
+		<property name="CurrentLat" type="number" required="true" canEmpty="true" desc="当前位置纬度"/>
+		
+		
+		<property name="TableName" type="tableName" required="true" canEmpty="true" desc="表名"/>
+		 
+	</propertys>
+	<events>
+		<event name="OnClick" desc="单击事件"/>
+		<event name="OnMarkerClick" desc="单击标注事件"/>
+        <event name="OnDrag" desc="拖拽事件"/>
+	</events>
+	<dataBindings>
+		<dataBinding name="datasource" required="false">
+			<storeType>singleRecord</storeType>
+			<dataSource name="TableName" canEmpty="true" desc="表名"/>
+			<dataMembers>
+				<dataMember name="AddressColumn" type="String" canEmpty="true"  isRelation="false" desc="地址字段"/>
+				<dataMember name="LongitudeColumn" type="String" canEmpty="true"  isRelation="false" desc="经度字段"/>
+				<dataMember name="LatitudeColumn" type="String" canEmpty="true"  isRelation="false" desc="纬度字段"/>
+			</dataMembers>
+		</dataBinding>
+	</dataBindings>
+</definition>
