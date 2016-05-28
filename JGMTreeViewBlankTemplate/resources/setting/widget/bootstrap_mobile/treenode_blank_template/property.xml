@@ -1,0 +1,28 @@
+<definition>
+	<propertys>
+		<property name="IsAtomicType" defaultValue="true" type="string" required="false" canEmpty="true" desc="是否原子"/>
+
+		<property name="Code" type="code" required="true" canEmpty="false" desc="控件名称"/>
+		<property name="Dock" type="string" required="true" canEmpty="true" desc="泊靠"/>
+		<property name="Height" type="number" required="true" canEmpty="true" desc="高度"/>
+		<property name="Width" type="number" required="true" canEmpty="true" desc="宽度"/>
+		<property name="Top" type="number" required="true" canEmpty="true" desc="上边距"/>
+		<property name="Left" type="number" required="true" canEmpty="true" desc="左边距"/>
+
+		<property name="ExtPoint" type="string" required="true" canEmpty="true" desc="扩展点类型"/>
+		<property name="NodeTemplateType" type="string" required="true" canEmpty="true" desc="模板应用样式"/>
+		<property name="TreeNodeHTMLTemplate" type="string" required="true" canEmpty="true" desc="节点附加域模板"/>
+        <property name="BackColor" type="string" required="true" canEmpty="true" desc="背景色"/>
+	</propertys>
+	<events>
+		
+	</events>
+	<dataBindings>
+		<dataBinding name="datasource" required="false">
+			<storeType>singleRecord</storeType>
+			<dataSource name="TableName" canEmpty="true" desc="表名"/>
+			<dataMembers>
+			</dataMembers>
+		</dataBinding>
+	</dataBindings>
+</definition>
