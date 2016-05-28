@@ -1,0 +1,46 @@
+<definition>
+	<propertys>
+		<!-- 静态属性 -->
+		<property name="IsAtomicType" defaultValue="true" type="string" required="false" canEmpty="true" desc="是否原子"/>
+		<property name="RequireJS" defaultValue="JGMTreeView/js/JGMTree.js" type="string" required="false" canEmpty="true" desc="扩展js"/>
+		
+		<property name="Code" type="code" required="true" canEmpty="false" desc="控件名称"/>
+		<property name="Dock" type="string" required="true" canEmpty="true" desc="泊靠"/>
+		<property name="PercentHeight" type="number" required="true" canEmpty="true" desc="百分比高度"/>
+		<property name="PercentWidth" type="number" required="true" canEmpty="true" desc="百分比宽度"/>
+		<property name="Height" type="number" required="true" canEmpty="true" desc="高度"/>
+		<property name="Width" type="number" required="true" canEmpty="true" desc="宽度"/>
+		<property name="Left" type="number" required="true" canEmpty="true" desc="左边距"/>
+		<property name="Top" type="number" required="true" canEmpty="true" desc="上边距"/>
+		<property name="Visible" type="boolean" required="true" canEmpty="true" desc="显示"/>
+		
+		<property name="DisplayMode" type="string" required="true" canEmpty="true" desc="显示模式"/>
+		<property name="CascadeCheck" type="boolean" required="true" canEmpty="true" desc="级联"/>
+		<property name="CollapseIcon" type="string" required="true" canEmpty="true" desc="父节点折叠图标"/>
+		<property name="ExpandIcon" type="string" required="true" canEmpty="true" desc="父节点展开图标"/>
+		<property name="SelectedNodeBackColor" type="string" required="true" canEmpty="true" desc="节点选中背景色"/>
+		
+		<property name="TableName" type="tableName" required="true" canEmpty="true" desc="表名"/>
+		 
+	</propertys>
+	<events>
+		<event name="OnValueLoaded" desc="值加载事件"/>
+		<event name="OnClick" desc="单击事件"/>
+		<event name="NodeCollapseEvent" desc="节点折叠事件"/>
+        <event name="NodeExpandEvent" desc="节点展开事件"/>
+        <event name="OnSelectionChanged" desc="记录选择变更"/>
+	</events>
+	<dataBindings>
+		<dataBinding name="datasource" required="false">
+			<storeType>singleRecord</storeType>
+			<dataSource name="TableName" canEmpty="true" desc="表名"/>
+			<dataMembers>
+				<dataMember name="IDColumn" type="String" canEmpty="true"  isRelation="false" desc="标识字段"/>
+				<dataMember name="PIDColumn" type="String" canEmpty="true"  isRelation="false" desc="父标识字段"/>
+				<dataMember name="OrderNoColumn" type="String" canEmpty="true"  isRelation="false" desc="排序字段"/>
+				<dataMember name="InnerCodeColumn" type="String" canEmpty="true"  isRelation="false" desc="层级码字段"/>
+				<dataMember name="LeafNode" type="String" canEmpty="true"  isRelation="false" desc="叶子节点字段"/>
+			</dataMembers>
+		</dataBinding>
+	</dataBindings>
+</definition>

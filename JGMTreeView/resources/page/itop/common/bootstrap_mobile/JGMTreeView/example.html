@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <script language="JavaScript" src="../../../common/jquery/jquery-1.10.2.js"></script>
+    <script language="JavaScript" src="js/JGMTree.js"></script>
+    <link href="../../../common/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../../../common/iconfont/iconfont.css" rel="stylesheet">
+    <style type="text/css">
+        .tree_container{
+            width: 100%;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .tree_row{
+            width: 100%;
+            padding-right: 0px;
+            height: auto;
+        }
+        .row_parent{
+        }
+        .row_child{
+        }
+        .row_selected{
+            background-color: #eef4ff;
+        }
+        .row_click{
+            background-color: #e5e5e5;
+        }
+
+        .row_entry{
+            height:auto!important;
+            min-height:44px !important;
+            height: 44px;
+            padding: 10px 0px;
+            border-bottom: solid 1px #e5e5e5;
+            display: flex;
+		}
+        .entry_icon{
+            width: 20px;
+            height: 23px;
+            flex-grow:0;
+        }
+        .entry_icon .iconfont{
+			padding-top: 4px;
+			margin-right: 8px;
+			font-size: 10px;
+			color: #c7c7cc;
+		}
+        .entry_icon_point{
+            position: relative;
+			top: -15px;
+			right: -6px;
+            width: 6px;
+            height: 6px;
+            background: #4cda64;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+        }
+        .entry_name{
+            font-size: 16px;
+            color: #333;
+            flex-grow:1;
+        }
+        .entry_addon{
+            height: 100%;
+            margin-right: 15px;
+            text-overflow: ellipsis;
+            align: right;
+            text-align: right;
+            flex-grow:1;
+        }
+        .entry_action{
+            width: 88px;
+            height: 100%;
+            flex-grow:0;
+            margin-right: 15px;
+            overflow: hidden;
+        }
+        .entry_action .iconfont{
+            line-height: 22px;
+            font-size: 22px;
+            float: right;
+        }
+        .entry_action .icon-round{
+            color: #c7c7cc;
+        }
+        .entry_action .icon-roundcheckfill{
+            color: #4cda64;
+        }
+        .entry_action .icon-check{
+            color: #4cda64;
+        }
+
+
+        .row_child .row_entry{
+            height:auto!important;
+            min-height:60px !important;
+            height: 60px;
+        }
+        .row_child .entry_icon{
+            width: 40px;
+        }
+        .row_child .entry_name{
+            margin-left: 10px;
+            padding-top: 9px;
+        }
+        .row_child .entry_action{
+            padding-top: 8px;
+        }
+
+        .row_parent .depth_1{
+            margin-left: 15px;
+        }
+        .row_parent .depth_2{
+            margin-left: 30px;
+        }
+        .row_child .depth_1{
+            margin-left: 10px;
+        }
+        .row_child .depth_2{
+            margin-left: 25px;
+        }
+        .row_child .depth_3{
+            margin-left: 40px;
+        }
+    </style>
+</head>
+<body>
+<div class="aa tree_container" id="tree1">
+    <div class="tree_row row_parent " >
+        <div class="row_entry depth_1">
+			<div class="entry_icon"><div class="iconfont icon-sanjiao1"></div><div class="entry_icon_point"></div></div>
+			<div class="entry_name">我的好友</div>
+        </div>
+    </div>
+    <div class="tree_row row_parent ">
+        <div class="row_entry depth_2">
+            <div class="entry_icon"><div class="iconfont icon-sanjiao1"></div></div>
+            <div class="entry_name">中土世界</div>
+            <div class="entry_action"><div class="iconfont icon-round"></div></div>
+        </div>
+    </div>
+    <div class="tree_row row_child row_selected ">
+        <div class="row_entry depth_3">
+            <div class="entry_icon"><img src="/itop/common/images/start_icon_active.png" height="40px" width="40px"/></div>
+            <div class="entry_name">爱隆王</div>
+            <div class="entry_action"><div class="iconfont icon-roundcheckfill"></div></div>
+        </div>
+    </div>
+    <div class="tree_row row_child">
+        <div class="row_entry depth_3">
+            <div class="entry_icon"><img src="/itop/common/images/start_icon_active.png" height="40px" width="40px"/></div>
+            <div class="entry_name">甘道夫</div>
+            <div class="entry_action"><div class="iconfont icon-check"></div></div>
+        </div>
+    </div>
+    <div class="tree_row row_child">
+        <div class="row_entry depth_3">
+            <div class="entry_name">魔寇斯 2 22  2 2 2 2 3  ded d  f f  r  d d d d d</div>
+        </div>
+    </div>
+    <div class="tree_row row_parent">
+        <div class="row_entry depth_2">
+            <div class="entry_icon"><div class="iconfont icon-sanjiao3"></div><div class="entry_icon_point"></div></div>
+            <div class="entry_name">维斯特洛</div>
+        </div>
+    </div>
+    <div class="tree_row row_parent ">
+        <div class="row_entry depth_1">
+            <div class="entry_icon"><div class="iconfont icon-sanjiao3"></div></div>
+            <div class="entry_name">陌生人</div>
+        </div>
+    </div>
+</div>
+<script language="JavaScript">
+    $(".tree_row").click(function(e){
+        alert("click on row");
+    });
+    $(".entry_action").click(function(e){
+        e.stopPropagation();
+        alert("click on action icon");
+    });
+</script>
+
+</body>
+</html>
