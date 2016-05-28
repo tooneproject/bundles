@@ -1,0 +1,50 @@
+<definition>
+	<propertys>
+		<!-- 静态属性 -->
+		<property name="IsAtomicType" defaultValue="true" type="string" required="false" canEmpty="true" desc="是否原子"/>
+		<property name="RequireJS" defaultValue="JGMPayPassword/js/PayPassword.js" type="string" required="false" canEmpty="true" desc="扩展js"/>
+		<!-- 静态属性 -->
+		<!-- UI属性 -->
+		<property name="Code" type="code" required="true" canEmpty="false" desc="控件名称"/>
+		<property name="MaxLength" type="number" required="true" canEmpty="true" desc="密码位数"/>
+		<property name="MoreActionText" type="string" required="true" canEmpty="true" desc="更多操作文本"/>
+		<property name="InvalidPasswordMessage" type="string" required="true" canEmpty="true" desc="错误提示信息"/>
+		
+		<property name="DisplayScale" type="string" required="true" canEmpty="false" desc="宽度比例"/>
+		<!-- UI属性 -->
+		<!-- 事件 -->
+		<property name="OnMoreOper" type="event" required="true" canEmpty="true" desc="更多操作事件"/>
+		<property name="OnFinished" type="event" required="true" canEmpty="true" desc="输入完成事件"/>
+		<!-- 
+		<property name="OnValueLoaded" type="event" required="true" canEmpty="true" desc="键盘按下"/>
+		<property name="OnLabelClick" type="event" required="true" canEmpty="true" desc="单击标题"/>
+		<property name="OnEnter" type="event" required="true" canEmpty="true" desc="获取焦点"/>
+		<property name="OnLeave" type="event" required="true" canEmpty="true" desc="失去焦点"/>
+		 -->
+		<!-- 事件 -->
+		<!-- 数据 -->
+		<property name="TableName" type="tableName" required="true" canEmpty="true" desc="表名"/>
+		<property name="ColumnName" type="columnName" required="true" canEmpty="true" desc="字段名称"/>
+		<property name="ValidPassword" type="boolean" required="true" canEmpty="true" desc="验证密码结果"/>
+		<!-- 数据 -->
+	</propertys>
+	<events>
+	<!-- 
+		<event name="OnValueChanged"  desc="值改变事件"/>
+		<event name="OnKeyDown"  desc="键盘按下"/>
+		<event name="OnValueLoaded" desc="值加载事件"/>
+		<event name="OnLabelClick" desc="单击标题"/>
+		<event name="OnEnter" desc="获取焦点"/>
+		<event name="OnLeave" desc="失去焦点"/>
+	 -->
+	</events>
+	<dataBindings>
+		<dataBinding name="datasource" required="false">
+			<storeType>singleRecord</storeType>
+			<dataSource name="TableName" canEmpty="true" desc="表名"/>
+			<dataMembers>
+				<dataMember name="ColumnName" type="String" canEmpty="true" isRelation="false" desc="字段名称"/>
+			</dataMembers>
+		</dataBinding>
+	</dataBindings>
+</definition>
