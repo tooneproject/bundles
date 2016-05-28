@@ -16,18 +16,20 @@
 <#assign WidgetCode = " widgetCode=\"${Code!''}\" ">
 
 <#-- panel 容器下的 Label 并且是水平组合 -->
-<#if "${_ParentWidget.type!''}" = "JGMPanel" && "${_ParentWidget.LayoutDirection!''}" = "vertical">
-<div class="row star_container" style="${controlVisible} ${SpacingScript}">
-	<div class="${DisplayScaleScript}">
+<#if "${_ParentWidget.LayoutDirection!''}" = "horizontal">
+<div class="${DisplayScaleScript}" id="${GlobalCode!""}" ${WidgetCode} style="${SpacingScript} ${controlVisible}">
+	<div class="star_container">
 		<div id="${GlobalCode!""}_label" class="jgmstar_label"></div>
 		<div id="${GlobalCode!""}_stars" class="jgmstar_stars"><div id="${GlobalCode!""}_bar" class="jgmstar_bar"></div></div>
 	</div>
 </div>
 <#else>
-<div class="${DisplayScaleScript}" style="${SpacingScript} ">
-	<div class="star_container" style="${controlVisible} ">
-		<div id="${GlobalCode!""}_label" class="jgmstar_label"></div>
-		<div id="${GlobalCode!""}_stars" class="jgmstar_stars"><div id="${GlobalCode!""}_bar" class="jgmstar_bar"></div></div>
+<div class="row">
+	<div ${WidgetCode} class="${DisplayScaleScript}" id="${GlobalCode!""}"  style="${SpacingScript} ${controlVisible}">
+		<div class="star_container">
+			<div id="${GlobalCode!""}_label" class="jgmstar_label"></div>
+			<div id="${GlobalCode!""}_stars" class="jgmstar_stars"><div id="${GlobalCode!""}_bar" class="jgmstar_bar"></div></div>
+		</div>
 	</div>
 </div>
 </#if>

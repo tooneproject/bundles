@@ -1,6 +1,7 @@
 .star_container {
     background-color: #fff;
     padding: 0px 15px;
+    height: 42px;
 }
 
 .hand_cursor {
@@ -11,8 +12,8 @@
     line-height: 42px;
     float: left;
     
-    color：#333 !important;
-    font-size：14px !important;
+    color:#333 !important;
+    font-size:14px !important;
 }
 .jgmstar_stars{
     height: 42px;
