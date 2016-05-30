@@ -5,8 +5,7 @@
 		<property name="RequireJS" defaultValue="JGMMap/js/JGMMap.js" type="string" required="false" canEmpty="true" desc="扩展js"/>
 		
 		<property name="Code" type="code" required="true" canEmpty="false" desc="控件名称"/>
-		<property name="Left" type="number" required="true" canEmpty="true" desc="左边距"/>
-		<property name="Top" type="number" required="true" canEmpty="true" desc="上边距"/>
+		<property name="Spacing" type="padding" required="true" canEmpty="false" desc="布局间距"/>
 		<property name="HeightPercent" type="number" required="true" canEmpty="true" desc="百分比高度"/>
 		<property name="DisplayScale" type="string" required="true" canEmpty="true" desc="显示比例"/>
 		<property name="Visible" type="boolean" required="true" canEmpty="true" desc="显示"/>

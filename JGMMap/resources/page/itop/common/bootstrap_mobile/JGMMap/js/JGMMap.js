@@ -94,9 +94,11 @@
             targetLocation = location;
             me.setCenter(targetLocation);
         };
-        me.setCurrLocation = function(location){
-            currLocation = location;
-            me.setCenter(currLocation);
+        me.getCurrLocation = function(){
+        	var center = bdmap.getCenter();
+    		currLocation.lng = center.lng;
+    		currLocation.lat = center.lat;
+            return currLocation;
         };
         me.getBaseLocation = function(){
             if(targetLocation.lng && targetLocation.lat){
@@ -135,10 +137,13 @@
             var myInfo = new InfoOverlay(loc, loc.address, opts.readOnly);
             bdmap.addOverlay(myInfo);
             infoOverlays.push(myInfo);
-            myInfo.hide();
+            if(opts.infoVisible){
+            	myInfo.show();
+            }else{
+            	myInfo.hide();
+            }
             
             if(opts.readOnly){
-            	if(opts.infoVisible) myInfo.show();
             	me.el_address.text(loc.address);
             }else{
                 marker.addEventListener("click", function(e){
@@ -190,7 +195,7 @@
             me.solveLocation(startLocation);
             me.solveLocation(endLocation);
 
-            var router = routingPolicy[type || 'transit'];
+            var router = routingPolicy[type || 'driving'];
             bdmap.clearOverlays();
             router.search(start, end);
         };
@@ -381,7 +386,7 @@
             getStartAddress: function(){ return startLocation.address; },
             getEndAddress: function(){ return endLocation.address; },
             getTargetLocation: function(){ return targetLocation; },
-            getCurrLocation: function(){ return currLocation;},
+            getCurrLocation: me.getCurrLocation,
             //扩展标注信息接口,只需注入一个负责生成html内容的函数
             setCustomMarkerInfoExtFunction : function(func){ me.markerInfoExtImpl = func;}
         };

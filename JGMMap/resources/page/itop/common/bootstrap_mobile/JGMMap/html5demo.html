@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="yes" name="apple-touch-fullscreen">
+	<meta content="telephone=no,email=no" name="format-detection">
+	<meta content="fullscreen=yes,preventMove=no" name="ML-Config">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script language="JavaScript" src="../../../common/jquery/jquery-1.10.2.js"></script>
+    
+    <link href="../../../common/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="../../../common/iconfont/iconfont.css" rel="stylesheet">
+    <link href="css/JGMMap.css" rel="stylesheet">
+    
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=sWn0piCMGsFE2peqc3RXkqZCw4cQ9Gph"></script>
+
+
+	<script type="text/javascript" src="js/JGMMap.js"></script>
+    <title>地图官网展示效果</title>
+</head>
+<body>
+    <div>
+        <input type="button" value="get Geo" />
+    </div>
+    <div id="baiduMap" style="width: 300px; height: 300px; float: left;">
+    </div>
+    <div id="googleMap" style="width: 300px; height: 300px; float: left;">
+    </div>
+    <div id="bingMap" style="width: 300px; height: 300px; float: left; position: relative;">
+    </div>
+</body>
+<script type="text/javascript">
+$.log = function(msg) {
+    console.log(msg);
+}
+
+$(
+function() {
+    $(":button").click(
+    function() {
+        navigator.geolocation.getCurrentPosition(
+        function(e) { //成功回调
+            $.log(e.coords.accuracy); //准确度
+            $.log(e.coords.latitude); //纬度
+            $.log(e.coords.longitude); //经度
+            $.log(e.coords.altitude); //海拔高度
+            $.log(e.coords.altitudeAccuracy); //海拔高度的精确度
+            $.log(e.coords.heading); //行进方向
+            $.log(e.coords.speed); //地面的速度
+            $.log(new Date(e.timestamp).toLocaleDateString()); //采集日期
+            $.log(new Date(e.timestamp).toLocaleTimeString()); //采集时间
+            createBaiduMap(e.coords.longitude, e.coords.latitude);
+            //createBingMap(e.coords.longitude, e.coords.latitude);
+        },
+        function(e) { //失败回调
+            $.log(e.message); //错误信息
+            $.log(e.code); //错误代码
+        },
+        {//可选参数 JSON格式
+            enableHighAcuracy: true, //是否启用高精确度模
+            timeout: 10000, //在指定的时间内获取位置信息
+            maximumAge: 0//浏览器重新获取位置信息的时间间隔
+        }
+        );
+    }
+    );
+}
+);
+
+
+function createBaiduMap(longitude, latitude) {
+    var map = new BMap.Map("baiduMap");
+    var point = new BMap.Point(longitude, latitude);
+    map.centerAndZoom(point, 15);
+}
+
+function createGoogleMap(longitude, latitude) {
+    var map = new google.maps.Map(document.getElementById("googleMap"),
+    {
+        center: new google.maps.LatLng(latitude, longitude),
+        zoom: 14,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeControl: false,
+        navigationControlOptions: { style: google.maps.NavigationControlStyle.SMALL }
+    }
+    );
+}
+
+function createBingMap(longitude, latitude) {
+    var map = new VEMap("bingMap");
+    var LA = new VELatLong(latitude, longitude);
+    map.LoadMap(LA, 14, VEMapStyle.Road, false, VEMapMode.Mode2D, true, 1);
+}
+</script>
+</html>

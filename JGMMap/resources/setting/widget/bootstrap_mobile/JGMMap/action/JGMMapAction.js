@@ -57,11 +57,11 @@ define("./JGMMapAction", function(require, exports, module) {
 		return $("#" + globalCode + "Parent").css("display")!="none";
 	};
 	var setVisible = function(widgetCode, state) {
-		globalCode = widgetContext.get(widgetCode, "GlobalCode");
+		var globalCode = widgetContext.get(widgetCode, "GlobalCode");
 		if (state) {
-			$("#" + globalCode + "Parent").show();
+			$("#" + globalCode + "_parent").show();
 		} else {
-			$("#" + globalCode + "Parent").hide();
+			$("#" + globalCode + "_parent").hide();
 		}
 	};
 
@@ -102,17 +102,17 @@ define("./JGMMapAction", function(require, exports, module) {
 	};
 	var setTargetLng = function(widgetCode, lng){
 		targetLng = lng;
-		tryToSetTargetLocation();
+		tryToSetTargetLocation(widgetCode);
 	};
 	var setTargetLat = function(widgetCode, lat){
 		targetLat = lat;
-		tryToSetTargetLocation();
+		tryToSetTargetLocation(widgetCode);
 	};
 	var setTargetAddress = function(widgetCode, address){
 		targetAddress = address;
-		tryToSetTargetLocation();
+		tryToSetTargetLocation(widgetCode);
 	};
-	var tryToSetTargetLocation = function(){
+	var tryToSetTargetLocation = function(widgetCode){
 		if((!!targetLng && !!targetLat) || !!targetAddress){
 			var widget = widgetContext.get(widgetCode, "widgetObj");
 			widget.setTargetLocation({lng:targetLng, lat:targetLat, address:targetAddress});
