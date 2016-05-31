@@ -133,6 +133,15 @@ define("./JGMMapAction", function(require, exports, module) {
 		widget.keywordSearch(keyword);
 	};
 	
+	var setGPSVisible = function(widgetCode, state){
+		var widget = widgetContext.get(widgetCode, "widgetObj");
+		widget.setGPSVisible(state);
+	};
+	var getGPSVisible = function(wigetCode){
+		var widget = widgetContext.get(widgetCode, "widgetObj");
+		return widget.getGPSVisible();
+	};
+	
 	exports.initEvent = initEvent;
 	exports.getVisible = getVisible;
 	exports.setVisible = setVisible;

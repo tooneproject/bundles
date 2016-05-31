@@ -72,13 +72,20 @@
             bdmap.addControl(navigation);
         };
         me.addGPSCtrl = function(){
-            var geolocationControl = new BMap.GeolocationControl();
-            geolocationControl.addEventListener("locationSuccess", function(e){
-                currLocation.lng = e.point.lng;
-                currLocation.lat = e.point.lat;
-                currLocation.address = me.formatAddressComponent(e.addressComponent);
-            });
-            bdmap.addControl(geolocationControl);
+        	if(!me.geolocationControl){
+        		me.geolocationControl = new BMap.GeolocationControl();
+        		me.geolocationControl.addEventListener("locationSuccess", function(e){
+        			currLocation.lng = e.point.lng;
+        			currLocation.lat = e.point.lat;
+        			currLocation.address = me.formatAddressComponent(e.addressComponent);
+        		});
+        	}
+            bdmap.addControl(me.geolocationControl);
+        };
+        me.removeGPSCtrl = function(){
+        	if(me.geolocationControl){
+        		bdmap.removeControl(me.geolocationControl);
+        	}
         };
         me.zoomTo = function(lv){
             bdmap.setZoom(lv);
@@ -89,6 +96,7 @@
             }else if(!!location.address){
                 bdmap.setCenter(location.address);
             }
+            me.init_comp = true;
         };
         me.setTargetLocation = function(location){
             targetLocation = location;
@@ -128,7 +136,7 @@
                 me.createMarkerWithInfo(loc);
                 latestLocation = loc;
         	}
-        	me.setTargetLocation(latestLocation);
+        	if(latestLocation) me.setTargetLocation(latestLocation);
         };
         me.createMarkerWithInfo = function(loc){
         	var marker = new BMap.Marker(new BMap.Point(loc.lng, loc.lat));
@@ -198,6 +206,8 @@
             var router = routingPolicy[type || 'driving'];
             bdmap.clearOverlays();
             router.search(start, end);
+            
+            me.init_comp = true;
         };
 
         me.keywordSearch = function(words){
@@ -205,6 +215,8 @@
             var basePoint = new BMap.Point(baseLoc.lng, baseLoc.lat);
             bdmap.setCenter(basePoint);
             localSearch.searchNearby(words, basePoint);
+            
+            me.init_comp = true;
         };
 
         me.inputInit = function(){
@@ -234,7 +246,7 @@
                     currLocation.lng = r.point.lng;
                     currLocation.lat = r.point.lat;
                     me.solveAddress(currLocation);
-                    if(infoOverlays.length==0){
+                    if(!me.init_comp){
                     	me.setCenter(currLocation);
                     }
                 }
@@ -253,6 +265,17 @@
             return "";
         };
 
+        me.setGPSVisible = function(state){
+    		if(opts.gpsVisible == state){
+    			return;
+    		}else if(opts.gpsVisible){
+    			me.removeGPSCtrl();
+    		}else{
+    			me.addGPSCtrl();
+    		}
+    		opts.gpsVisible = state;
+    	};
+    	
         me.addOnClickListener = function (eventHandler) {
             if (me.clickEventListeners.indexOf(eventHandler) == -1) {
                 me.clickEventListeners.push(eventHandler);
@@ -379,7 +402,10 @@
             addOnClickListener : me.addOnClickListener,
             addOnDragListener : me.addOnDragListener,
             addOnMarkerClickListener : me.addOnMarkerClickListener,
-            setTargetLocation: me.setTargetLocation,
+            setTargetLocation: function(location){
+            	me.createMarkerWithInfo(location);
+            	me.setTargetLocation(location);
+            },
             addMarkers: me.addMarkers,
             keywordSearch: me.keywordSearch,
             showRoute: me.routeSearch,
@@ -387,6 +413,8 @@
             getEndAddress: function(){ return endLocation.address; },
             getTargetLocation: function(){ return targetLocation; },
             getCurrLocation: me.getCurrLocation,
+            getGPSVisible: function(){ return opts.gpsVisible;},
+            setGPSVisible: me.setGPSVisible,
             //扩展标注信息接口,只需注入一个负责生成html内容的函数
             setCustomMarkerInfoExtFunction : function(func){ me.markerInfoExtImpl = func;}
         };
