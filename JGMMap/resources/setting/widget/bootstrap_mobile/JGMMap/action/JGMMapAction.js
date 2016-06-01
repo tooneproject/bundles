@@ -161,5 +161,8 @@ define("./JGMMapAction", function(require, exports, module) {
 	exports.getCurrentLng = getCurrentLng;
 	exports.getCurrentLat = getCurrentLat;
 	
+	exports.setGPSVisible = setGPSVisible;
+	exports.getGPSVisible = getGPSVisible;
+	
 	exports.setKeyword = setKeyword;
 });

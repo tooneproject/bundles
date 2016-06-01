@@ -403,6 +403,7 @@
             addOnDragListener : me.addOnDragListener,
             addOnMarkerClickListener : me.addOnMarkerClickListener,
             setTargetLocation: function(location){
+            	me.closeAllInfoOverlays();
             	me.createMarkerWithInfo(location);
             	me.setTargetLocation(location);
             },
