@@ -12,6 +12,7 @@
         var currLocation = {};
         var startLocation = {};
         var endLocation = {};
+        var markerOverlays = [];
         var infoOverlays = [];
         this.clickEventListeners = [];
         this.dragEventListeners = [];
@@ -141,6 +142,7 @@
         me.createMarkerWithInfo = function(loc){
         	var marker = new BMap.Marker(new BMap.Point(loc.lng, loc.lat));
             bdmap.addOverlay(marker);
+            markerOverlays.push(marker);
 
             var myInfo = new InfoOverlay(loc, loc.address, opts.readOnly);
             bdmap.addOverlay(myInfo);
@@ -165,6 +167,11 @@
         me.closeAllInfoOverlays = function(){
         	for(var i=0,l=infoOverlays.length;i<l;i++){
         		infoOverlays[i].hide();
+        	}
+        };
+        me.closeAllMarkerOverlays = function(){
+        	for(var i=0,l=markerOverlays.length;i<l;i++){
+        		markerOverlays[i].hide();
         	}
         };
         
@@ -403,6 +410,7 @@
             addOnDragListener : me.addOnDragListener,
             addOnMarkerClickListener : me.addOnMarkerClickListener,
             setTargetLocation: function(location){
+            	me.closeAllMarkerOverlays();
             	me.closeAllInfoOverlays();
             	me.createMarkerWithInfo(location);
             	me.setTargetLocation(location);
